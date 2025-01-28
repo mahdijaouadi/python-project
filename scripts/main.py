@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 from data_construction import *
+from backtesting import *
+
 
 app = Flask(__name__)
 
@@ -9,9 +11,10 @@ def home():
     return "Welcome to my simple web server!"
 
 # Second GET function: /info endpoint
-@app.route('/data_construction', methods=['GET'])
+@app.route('/backtesting', methods=['GET'])
 def data_construction_calling():
-    return data_construction_func()
+    return data_backtesting_func()
+
 
 
 if __name__ == '__main__':
