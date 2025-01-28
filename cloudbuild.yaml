@@ -1,0 +1,27 @@
+steps:
+- id: build
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    docker build -t europe-west1-docker.pkg.dev/${PROJECT_ID}/pi-gen-testing/app-python:${SHORT_SHA} .
+    docker push europe-west1-docker.pkg.dev/${PROJECT_ID}/pi-gen-testing/app-python:${SHORT_SHA}
+
+- id: deploy
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: sh
+  args:
+  - '-c'
+  - | 
+      echo "*********"
+      echo "europe-west1-docker.pkg.dev/${PROJECT_ID}/pi-gen-testing/app-python:${SHORT_SHA}"
+      echo "*********"
+
+      gcloud run services update butly-bot-dev \
+      --region=europe-west1 \
+      --image=europe-west1-docker.pkg.dev/${PROJECT_ID}/pi-gen-testing/app-python:${SHORT_SHA}
+
+logsBucket: 'gs://aidodev_cb_logs/java_pipeline/${BUILD_ID}'
+options:
+  logging: GCS_ONLY
