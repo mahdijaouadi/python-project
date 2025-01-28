@@ -22,6 +22,6 @@ steps:
       --region=europe-west1 \
       --image=europe-west1-docker.pkg.dev/${PROJECT_ID}/pi-gen-testing/app-python:${SHORT_SHA}
 
-logsBucket: 'gs://aidodev_cb_logs/java_pipeline/${BUILD_ID}'
+logsBucket: 'gs://aidodev_cb_logs/python_pipeline/${BUILD_ID}'
 options:
   logging: GCS_ONLY
