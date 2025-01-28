@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Step 5: Copy the rest of the application code to the container
 COPY . .
-
+EXPOSE 5000
 
 # Step 7: Define the command to run your application
-CMD ["python", "scripts/data_construction.py"]
+CMD ["python", "scripts/main.py"]
