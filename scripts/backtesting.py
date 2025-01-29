@@ -1,5 +1,5 @@
 def backtesting_func():
-    valid= False
+    valid= True
     ch=''
     if valid:
         ch1='hello world'
