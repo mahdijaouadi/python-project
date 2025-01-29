@@ -1,4 +1,4 @@
-def data_backtesting_func():
+def backtesting_func():
     valid= False
     ch=''
     if valid:

@@ -12,8 +12,8 @@ def home():
 
 # Second GET function: /info endpoint
 @app.route('/backtesting', methods=['GET'])
-def data_construction_calling():
-    return data_backtesting_func()
+def backtesting_calling():
+    return backtesting_func()
 
 
 
