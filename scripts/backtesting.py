@@ -3,7 +3,7 @@ def backtesting_func():
     ch=''
     if valid:
         ch1='hello world'
-        ch2=6
+        ch2="!"
 
         ch=ch1+ch2
     return ch
