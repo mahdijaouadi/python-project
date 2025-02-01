@@ -6,7 +6,6 @@ from data_preprocessing import data_cleeaning
 
 
 def data_construction_func():
-    print('here')
     daily_data=yf.download(tickers='TSLA',interval='1d',start='2024-01-01')
     daily_data.rename(columns={'Open':'open','High':'high','Low':'low','Close':'close'},inplace=True)
     daily_data.reset_index(inplace=True,drop=False)
