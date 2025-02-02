@@ -1,7 +1,8 @@
 from flask import Flask, jsonify
 from data_construction import *
 from backtesting import *
-
+from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
@@ -13,6 +14,8 @@ def home():
 # Second GET function: /info endpoint
 @app.route('/backtesting', methods=['GET'])
 def backtesting_calling():
+    load_dotenv()
+    llm=ChatGoogleGenerativeAI(model='gemini-1.5-flash-8b')
     return backtesting_func()
 
 
