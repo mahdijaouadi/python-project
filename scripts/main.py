@@ -16,6 +16,7 @@ def home():
 def backtesting_calling():
     load_dotenv()
     llm=ChatGoogleGenerativeAI(model='gemini-1.5-flash-8b')
+    response=llm.invoke('hello')
     return backtesting_func()
 
 
