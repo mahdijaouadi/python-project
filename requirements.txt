@@ -3,3 +3,4 @@ yfinance==0.2.40
 langchain==0.3.15
 langchain_google_genai==2.0.9
 flask
+dotenv
