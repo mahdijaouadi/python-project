@@ -14,6 +14,9 @@ def home():
 # Second GET function: /info endpoint
 @app.route('/backtesting', methods=['GET'])
 def backtesting_calling():
+    load_dotenv()
+    x=os.getenv('y')
+    print(x)
     # llm=ChatGoogleGenerativeAI(model='gemini-1.5-flash-8b')
     # response=llm.invoke('hello')
     return {"status": "Self-healing task has been launched"}
