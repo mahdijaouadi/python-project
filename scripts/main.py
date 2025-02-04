@@ -3,7 +3,7 @@ from data_construction import *
 from backtesting import *
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
-
+import os
 app = Flask(__name__)
 
 # First GET function: Root endpoint
@@ -15,9 +15,11 @@ def home():
 @app.route('/backtesting', methods=['GET'])
 def backtesting_calling():
     load_dotenv()
-    llm=ChatGoogleGenerativeAI(model='gemini-1.5-flash-8b')
-    response=llm.invoke('hello')
-    return backtesting_func()
+    x=os.getenv('y')
+    print(x)
+    # llm=ChatGoogleGenerativeAI(model='gemini-1.5-flash-8b')
+    # response=llm.invoke('hello')
+    # return backtesting_func()
 
 
 
