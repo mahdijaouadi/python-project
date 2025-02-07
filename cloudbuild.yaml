@@ -1,4 +1,14 @@
 steps:
+- id: grant-permissions
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+      gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+      --member="serviceAccount:pigen-testing2@${PROJECT_ID}.iam.gserviceaccount.com" \
+      --role="roles/artifactregistry.reader" \
+      --condition=None
 - id: build
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
