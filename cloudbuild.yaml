@@ -5,10 +5,15 @@ steps:
   args:
   - '-c'
   - |
-      gcloud projects add-iam-policy-binding ${PROJECT_ID} \
-      --member="serviceAccount:pigen-testing2@${PROJECT_ID}.iam.gserviceaccount.com" \
-      --role="roles/artifactregistry.reader" \
-      --condition=None
+      if gcloud projects get-iam-policy ${PROJECT_ID} --format=json | jq -e '.bindings[] | select(.role=="roles/artifactregistry.reader") | .members[] | contains("serviceAccount:pigen-testing2@${PROJECT_ID}.iam.gserviceaccount.com")' > /dev/null; then
+        echo "ERROR: IAM binding already exists!"
+        exit 1  # This forces the pipeline to fail
+      else
+        gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+        --member="serviceAccount:pigen-testing2@${PROJECT_ID}.iam.gserviceaccount.com" \
+        --role="roles/artifactregistry.reader" \
+        --condition=None
+      fi
 - id: build
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
